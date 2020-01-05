@@ -37,5 +37,23 @@ namespace server.Services
                 Blog = blog
             });
         }
+
+        public override Task<ReadBlogResponse> ReadBlog(ReadBlogRequest request, ServerCallContext context)
+        {
+            var id = request.Id;
+            var filter = new FilterDefinitionBuilder<BsonDocument>().Eq("_id", new ObjectId(id));
+            var result = _blogs.Find(filter).FirstOrDefault();
+            if (result == null)
+                throw new RpcException(new Status(StatusCode.NotFound, $"Blog {id} not found"));
+
+            Blog.Blog blog = new Blog.Blog()
+            {
+                AuthorId = result.GetValue("authorId").AsString,
+                Title = result.GetValue("title").AsString,
+                Content = result.GetValue("content").AsString
+            };
+
+            return Task.FromResult(new ReadBlogResponse() { Blog = blog });
+        }
     }
 }

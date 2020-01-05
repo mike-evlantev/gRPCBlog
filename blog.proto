@@ -17,6 +17,16 @@ message CreateBlogResponse {
 	Blog blog = 1; // will containt an Id
 }
 
+message ReadBlogRequest {
+	string id = 1;
+}
+
+message ReadBlogResponse {
+	Blog blog = 1;
+}
+
 service BlogService {
+	// Unary 
 	rpc CreateBlog (CreateBlogRequest) returns (CreateBlogResponse) {};
+	rpc ReadBlog (ReadBlogRequest) returns (ReadBlogResponse) {};
 }
