@@ -31,10 +31,19 @@ namespace client
             //Console.WriteLine($"Blog {createdBlog.Blog.Id} created!");
 
             // Get Blog By Id
-            var response = blogRepository.GetBlogById("5e116e0c3136041aec3e21a2");
-            Console.WriteLine(response.Blog.ToString());
-            
+            var getResponse = blogRepository.GetBlogById("5e116e0c3136041aec3e21a2");
+            Console.WriteLine(getResponse.Blog.ToString());
 
+            // Update Blog By Id
+            var blog = new Blog.Blog()
+            {
+                Id = "5e116e0c3136041aec3e21a2",
+                AuthorId = "Aladdin",
+                Title = "This is an updated title",
+                Content = "This is updated content"
+            };
+            var updateResponse = blogRepository.UpdateBlogById(blog);
+            Console.WriteLine(updateResponse.Blog.ToString());
 
             channel.ShutdownAsync().Wait();
             Console.ReadKey();

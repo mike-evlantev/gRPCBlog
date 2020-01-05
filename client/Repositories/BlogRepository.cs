@@ -41,5 +41,18 @@ namespace client.Repositories
             }
             
         }
+
+        public UpdateBlogByIdResponse UpdateBlogById(Blog.Blog blog)
+        {
+            try
+            {
+                return _client.UpdateBlogById(new UpdateBlogByIdRequest() { Blog = blog });
+            }
+            catch (RpcException ex)
+            {
+                Console.WriteLine(ex.Status.Detail);
+                throw;
+            }
+        }
     }
 }
