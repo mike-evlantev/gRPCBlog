@@ -13,10 +13,9 @@ namespace client
     {
         const string target = "127.0.0.1:50051";
 
-        private static BlogRepository _blogRepository = new BlogRepository();
-
         static async Task Main(string[] args)
         {
+            
             Channel channel = new Channel(target, ChannelCredentials.Insecure);
             await channel.ConnectAsync().ContinueWith((task) =>
             {
@@ -25,9 +24,17 @@ namespace client
 
             });
 
-            var response = _blogRepository.CreateBlog(new BlogService.BlogServiceClient(channel));
+            BlogRepository blogRepository = new BlogRepository(new BlogService.BlogServiceClient(channel));
 
-            Console.WriteLine($"Blog {response.Blog.Id} created!");
+            // Create Blog
+            //var createdBlog = blogRepository.CreateBlog();
+            //Console.WriteLine($"Blog {createdBlog.Blog.Id} created!");
+
+            // Get Blog By Id
+            var response = blogRepository.GetBlogById("5e116e0c3136041aec3e21a2");
+            Console.WriteLine(response.Blog.ToString());
+            
+
 
             channel.ShutdownAsync().Wait();
             Console.ReadKey();
