@@ -27,23 +27,33 @@ namespace client
             BlogRepository blogRepository = new BlogRepository(new BlogService.BlogServiceClient(channel));
 
             // Create Blog
-            //var createdBlog = blogRepository.CreateBlog();
-            //Console.WriteLine($"Blog {createdBlog.Blog.Id} created!");
+            var newBlog = new Blog.Blog()
+            {
+                AuthorId = "Mike",
+                Title = "First Blog Post!",
+                Content = "Hello world!"
+            };
+            var createResponse = blogRepository.CreateBlog(newBlog);
+            Console.WriteLine($"Blog {createResponse.Blog.Id} created!");
 
             // Get Blog By Id
-            var getResponse = blogRepository.GetBlogById("5e116e0c3136041aec3e21a2");
+            var getResponse = blogRepository.GetBlogById(createResponse.Blog.Id);
             Console.WriteLine(getResponse.Blog.ToString());
 
             // Update Blog By Id
-            var blog = new Blog.Blog()
+            var blogToUpdate = new Blog.Blog()
             {
-                Id = "5e116e0c3136041aec3e21a2",
+                Id = createResponse.Blog.Id,
                 AuthorId = "Aladdin",
                 Title = "This is an updated title",
                 Content = "This is updated content"
             };
-            var updateResponse = blogRepository.UpdateBlogById(blog);
+            var updateResponse = blogRepository.UpdateBlogById(blogToUpdate);
             Console.WriteLine(updateResponse.Blog.ToString());
+
+            // Delete Blog By Id
+            var deleteResponse = blogRepository.DeleteBlogById(updateResponse.Blog.Id);
+            Console.WriteLine($"Blog {deleteResponse.Id} deleted!");
 
             channel.ShutdownAsync().Wait();
             Console.ReadKey();
