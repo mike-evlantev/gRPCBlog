@@ -1,15 +1,10 @@
 ﻿using Blog;
 using dotenv.net;
 using Grpc.Core;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using server.Services;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace server
 {
@@ -18,13 +13,17 @@ namespace server
         const int Port = 50051;
         const string MongoUri = "MONGO_URI";
         const string Db = "grpcblog";
+        const string EnvPath = "C:/Source/gRPCBlog/.env";
 
         static void Main(string[] args)
         {
-            // Connect to MongoDB
-            DotEnv.Config();
+            // Enable .env variables
+            DotEnv.Config(true, EnvPath);
+
+            // Connect to MongoDB            
             var client = new MongoClient(Environment.GetEnvironmentVariable(MongoUri));
             var db = client.GetDatabase(Db);
+            Console.WriteLine("Conneted to DB: " + db.DatabaseNamespace);
 
             Server server = null;
             try
