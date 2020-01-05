@@ -15,16 +15,11 @@ namespace client.Repositories
         {
             _client = client;
         }
-        public CreateBlogResponse CreateBlog()
+        public CreateBlogResponse CreateBlog(Blog.Blog blog)
         {
             return _client.CreateBlog(new CreateBlogRequest()
             {
-                Blog = new Blog.Blog()
-                {
-                    AuthorId = "Mike",
-                    Title = "First Blog Post!",
-                    Content = "Hello world!"
-                }
+                Blog = blog
             });
         }
 
@@ -53,6 +48,20 @@ namespace client.Repositories
                 Console.WriteLine(ex.Status.Detail);
                 throw;
             }
+        }
+
+        public DeleteBlogByIdResponse DeleteBlogById(string id)
+        {
+            try
+            {
+                return _client.DeleteBlogById(new DeleteBlogByIdRequest() { Id = id });
+            }
+            catch (RpcException ex)
+            {
+                Console.WriteLine(ex.Status.Detail);
+                throw;
+            }
+
         }
     }
 }
