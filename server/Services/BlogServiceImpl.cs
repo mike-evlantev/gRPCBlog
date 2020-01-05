@@ -73,5 +73,16 @@ namespace server.Services
             return Task.FromResult(new UpdateBlogByIdResponse() { Blog = blog });
 
         }
+
+        public override Task<DeleteBlogByIdResponse> DeleteBlogById(DeleteBlogByIdRequest request, ServerCallContext context)
+        {
+            var id = request.Id;
+            var filter = new FilterDefinitionBuilder<BsonDocument>().Eq("_id", new ObjectId(id));
+            var result = _blogs.DeleteOne(filter);
+            if (result.DeletedCount == 0)
+                throw new RpcException(new Status(StatusCode.NotFound, $"Blog {id} not found"));
+
+            return Task.FromResult(new DeleteBlogByIdResponse() { Id = id });
+        }
     }
 }
