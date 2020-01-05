@@ -1,8 +1,10 @@
 ﻿using Blog;
 using dotenv.net;
 using Grpc.Core;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using server.Services;
 using System;
@@ -21,6 +23,9 @@ namespace server
         {
             // Enable .env variables
             DotEnv.Config(true, EnvPath);
+
+            // Register Class mapping
+            RegisterClassMaps();
 
             // Connect to MongoDB            
             var client = new MongoClient(Environment.GetEnvironmentVariable(MongoUri));
@@ -50,6 +55,20 @@ namespace server
                 if (server != null)
                     server.ShutdownAsync().Wait();
             }
+        }
+
+        static void RegisterClassMaps()
+        {
+            BsonClassMap.RegisterClassMap<Blog.Blog>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIgnoreExtraElements(true);
+                cm.MapProperty(x => x.Id).SetElementName("_id");
+                cm.MapProperty(x => x.AuthorId).SetElementName("authorId");
+                cm.MapProperty(x => x.Title).SetElementName("title");
+                cm.MapProperty(x => x.Content).SetElementName("content");
+                cm.GetMemberMap(x => x.Id).SetSerializer(new StringSerializer(BsonType.ObjectId));
+            });
         }
     }
 }

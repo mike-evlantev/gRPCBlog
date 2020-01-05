@@ -48,7 +48,6 @@ namespace server.Services
             if (result == null)
                 throw new RpcException(new Status(StatusCode.NotFound, $"Blog {id} not found"));
 
-            result.Remove("_id");
             var blog = BsonSerializer.Deserialize<Blog.Blog>(result);
 
             return Task.FromResult(new GetBlogByIdResponse() { Blog = blog });
@@ -66,7 +65,6 @@ namespace server.Services
             using (var writer = new BsonDocumentWriter(doc))
                 BsonSerializer.Serialize(writer, request.Blog);
 
-            doc.Remove("_id");
             _blogs.ReplaceOne(filter, doc);
 
             var blog = BsonSerializer.Deserialize<Blog.Blog>(doc);
