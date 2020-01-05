@@ -10,7 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{DB92BAC9-0C20-4E45-B847-ED2EF015462A}"
 	ProjectSection(SolutionItems) = preProject
 		blog.proto = blog.proto
-		dummy.proto = dummy.proto
 	EndProjectSection
 EndProject
 Global
