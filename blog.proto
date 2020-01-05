@@ -33,10 +33,19 @@ message UpdateBlogByIdResponse {
 	Blog blog = 1;
 }
 
+message DeleteBlogByIdRequest {
+	string id = 1;
+}
+
+message DeleteBlogByIdResponse {
+	string id = 1;
+}
+
 
 service BlogService {
 	// Unary 
 	rpc CreateBlog (CreateBlogRequest) returns (CreateBlogResponse) {};
 	rpc GetBlogById (GetBlogByIdRequest) returns (GetBlogByIdResponse) {};
 	rpc UpdateBlogById (UpdateBlogByIdRequest) returns (UpdateBlogByIdResponse) {};
+	rpc DeleteBlogById (DeleteBlogByIdRequest) returns (DeleteBlogByIdResponse) {};
 }

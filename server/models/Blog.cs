@@ -32,12 +32,15 @@ namespace Blog {
             "bG9nQnlJZFJlc3BvbnNlEhgKBGJsb2cYASABKAsyCi5ibG9nLkJsb2ciMQoV",
             "VXBkYXRlQmxvZ0J5SWRSZXF1ZXN0EhgKBGJsb2cYASABKAsyCi5ibG9nLkJs",
             "b2ciMgoWVXBkYXRlQmxvZ0J5SWRSZXNwb25zZRIYCgRibG9nGAEgASgLMgou",
-            "YmxvZy5CbG9nMuUBCgtCbG9nU2VydmljZRJBCgpDcmVhdGVCbG9nEhcuYmxv",
-            "Zy5DcmVhdGVCbG9nUmVxdWVzdBoYLmJsb2cuQ3JlYXRlQmxvZ1Jlc3BvbnNl",
-            "IgASRAoLR2V0QmxvZ0J5SWQSGC5ibG9nLkdldEJsb2dCeUlkUmVxdWVzdBoZ",
-            "LmJsb2cuR2V0QmxvZ0J5SWRSZXNwb25zZSIAEk0KDlVwZGF0ZUJsb2dCeUlk",
-            "EhsuYmxvZy5VcGRhdGVCbG9nQnlJZFJlcXVlc3QaHC5ibG9nLlVwZGF0ZUJs",
-            "b2dCeUlkUmVzcG9uc2UiAGIGcHJvdG8z"));
+            "YmxvZy5CbG9nIiMKFURlbGV0ZUJsb2dCeUlkUmVxdWVzdBIKCgJpZBgBIAEo",
+            "CSIkChZEZWxldGVCbG9nQnlJZFJlc3BvbnNlEgoKAmlkGAEgASgJMrQCCgtC",
+            "bG9nU2VydmljZRJBCgpDcmVhdGVCbG9nEhcuYmxvZy5DcmVhdGVCbG9nUmVx",
+            "dWVzdBoYLmJsb2cuQ3JlYXRlQmxvZ1Jlc3BvbnNlIgASRAoLR2V0QmxvZ0J5",
+            "SWQSGC5ibG9nLkdldEJsb2dCeUlkUmVxdWVzdBoZLmJsb2cuR2V0QmxvZ0J5",
+            "SWRSZXNwb25zZSIAEk0KDlVwZGF0ZUJsb2dCeUlkEhsuYmxvZy5VcGRhdGVC",
+            "bG9nQnlJZFJlcXVlc3QaHC5ibG9nLlVwZGF0ZUJsb2dCeUlkUmVzcG9uc2Ui",
+            "ABJNCg5EZWxldGVCbG9nQnlJZBIbLmJsb2cuRGVsZXRlQmxvZ0J5SWRSZXF1",
+            "ZXN0GhwuYmxvZy5EZWxldGVCbG9nQnlJZFJlc3BvbnNlIgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -47,7 +50,9 @@ namespace Blog {
             new pbr::GeneratedClrTypeInfo(typeof(global::Blog.GetBlogByIdRequest), global::Blog.GetBlogByIdRequest.Parser, new[]{ "Id" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Blog.GetBlogByIdResponse), global::Blog.GetBlogByIdResponse.Parser, new[]{ "Blog" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Blog.UpdateBlogByIdRequest), global::Blog.UpdateBlogByIdRequest.Parser, new[]{ "Blog" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blog.UpdateBlogByIdResponse), global::Blog.UpdateBlogByIdResponse.Parser, new[]{ "Blog" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blog.UpdateBlogByIdResponse), global::Blog.UpdateBlogByIdResponse.Parser, new[]{ "Blog" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blog.DeleteBlogByIdRequest), global::Blog.DeleteBlogByIdRequest.Parser, new[]{ "Id" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blog.DeleteBlogByIdResponse), global::Blog.DeleteBlogByIdResponse.Parser, new[]{ "Id" }, null, null, null)
           }));
     }
     #endregion
@@ -1069,6 +1074,264 @@ namespace Blog {
               Blog = new global::Blog.Blog();
             }
             input.ReadMessage(Blog);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class DeleteBlogByIdRequest : pb::IMessage<DeleteBlogByIdRequest> {
+    private static readonly pb::MessageParser<DeleteBlogByIdRequest> _parser = new pb::MessageParser<DeleteBlogByIdRequest>(() => new DeleteBlogByIdRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<DeleteBlogByIdRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Blog.BlogReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteBlogByIdRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteBlogByIdRequest(DeleteBlogByIdRequest other) : this() {
+      id_ = other.id_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteBlogByIdRequest Clone() {
+      return new DeleteBlogByIdRequest(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private string id_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as DeleteBlogByIdRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(DeleteBlogByIdRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(DeleteBlogByIdRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class DeleteBlogByIdResponse : pb::IMessage<DeleteBlogByIdResponse> {
+    private static readonly pb::MessageParser<DeleteBlogByIdResponse> _parser = new pb::MessageParser<DeleteBlogByIdResponse>(() => new DeleteBlogByIdResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<DeleteBlogByIdResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Blog.BlogReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteBlogByIdResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteBlogByIdResponse(DeleteBlogByIdResponse other) : this() {
+      id_ = other.id_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteBlogByIdResponse Clone() {
+      return new DeleteBlogByIdResponse(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private string id_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as DeleteBlogByIdResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(DeleteBlogByIdResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(DeleteBlogByIdResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Id = input.ReadString();
             break;
           }
         }
