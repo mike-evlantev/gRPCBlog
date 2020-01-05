@@ -248,9 +248,6 @@
     <Protobuf Include="..\blog.proto">
       <OutputDir>models/</OutputDir>
     </Protobuf>
-    <Protobuf Include="..\dummy.proto">
-      <OutputDir>models/</OutputDir>
-    </Protobuf>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="models\Blog.cs" />
