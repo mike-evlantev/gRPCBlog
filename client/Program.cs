@@ -22,7 +22,7 @@ namespace client
             });
 
             var client = new BlogService.BlogServiceClient(channel);
-            var response = await client.CreateBlogAsync(new CreateBlogRequest()
+            var response = client.CreateBlog(new CreateBlogRequest()
             {
                 Blog = new Blog.Blog()
                 { 
