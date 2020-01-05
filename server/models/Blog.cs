@@ -28,20 +28,20 @@ namespace Blog {
             "aG9ySWQYAiABKAkSDQoFdGl0bGUYAyABKAkSDwoHY29udGVudBgEIAEoCSIt",
             "ChFDcmVhdGVCbG9nUmVxdWVzdBIYCgRibG9nGAEgASgLMgouYmxvZy5CbG9n",
             "Ii4KEkNyZWF0ZUJsb2dSZXNwb25zZRIYCgRibG9nGAEgASgLMgouYmxvZy5C",
-            "bG9nIh0KD1JlYWRCbG9nUmVxdWVzdBIKCgJpZBgBIAEoCSIsChBSZWFkQmxv",
-            "Z1Jlc3BvbnNlEhgKBGJsb2cYASABKAsyCi5ibG9nLkJsb2cyjQEKC0Jsb2dT",
-            "ZXJ2aWNlEkEKCkNyZWF0ZUJsb2cSFy5ibG9nLkNyZWF0ZUJsb2dSZXF1ZXN0",
-            "GhguYmxvZy5DcmVhdGVCbG9nUmVzcG9uc2UiABI7CghSZWFkQmxvZxIVLmJs",
-            "b2cuUmVhZEJsb2dSZXF1ZXN0GhYuYmxvZy5SZWFkQmxvZ1Jlc3BvbnNlIgBi",
-            "BnByb3RvMw=="));
+            "bG9nIiAKEkdldEJsb2dCeUlkUmVxdWVzdBIKCgJpZBgBIAEoCSIvChNHZXRC",
+            "bG9nQnlJZFJlc3BvbnNlEhgKBGJsb2cYASABKAsyCi5ibG9nLkJsb2cylgEK",
+            "C0Jsb2dTZXJ2aWNlEkEKCkNyZWF0ZUJsb2cSFy5ibG9nLkNyZWF0ZUJsb2dS",
+            "ZXF1ZXN0GhguYmxvZy5DcmVhdGVCbG9nUmVzcG9uc2UiABJECgtHZXRCbG9n",
+            "QnlJZBIYLmJsb2cuR2V0QmxvZ0J5SWRSZXF1ZXN0GhkuYmxvZy5HZXRCbG9n",
+            "QnlJZFJlc3BvbnNlIgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Blog.Blog), global::Blog.Blog.Parser, new[]{ "Id", "AuthorId", "Title", "Content" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Blog.CreateBlogRequest), global::Blog.CreateBlogRequest.Parser, new[]{ "Blog" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Blog.CreateBlogResponse), global::Blog.CreateBlogResponse.Parser, new[]{ "Blog" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blog.ReadBlogRequest), global::Blog.ReadBlogRequest.Parser, new[]{ "Id" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Blog.ReadBlogResponse), global::Blog.ReadBlogResponse.Parser, new[]{ "Blog" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blog.GetBlogByIdRequest), global::Blog.GetBlogByIdRequest.Parser, new[]{ "Id" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Blog.GetBlogByIdResponse), global::Blog.GetBlogByIdResponse.Parser, new[]{ "Blog" }, null, null, null)
           }));
     }
     #endregion
@@ -537,11 +537,11 @@ namespace Blog {
 
   }
 
-  public sealed partial class ReadBlogRequest : pb::IMessage<ReadBlogRequest> {
-    private static readonly pb::MessageParser<ReadBlogRequest> _parser = new pb::MessageParser<ReadBlogRequest>(() => new ReadBlogRequest());
+  public sealed partial class GetBlogByIdRequest : pb::IMessage<GetBlogByIdRequest> {
+    private static readonly pb::MessageParser<GetBlogByIdRequest> _parser = new pb::MessageParser<GetBlogByIdRequest>(() => new GetBlogByIdRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReadBlogRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<GetBlogByIdRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -554,21 +554,21 @@ namespace Blog {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadBlogRequest() {
+    public GetBlogByIdRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadBlogRequest(ReadBlogRequest other) : this() {
+    public GetBlogByIdRequest(GetBlogByIdRequest other) : this() {
       id_ = other.id_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadBlogRequest Clone() {
-      return new ReadBlogRequest(this);
+    public GetBlogByIdRequest Clone() {
+      return new GetBlogByIdRequest(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -584,11 +584,11 @@ namespace Blog {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReadBlogRequest);
+      return Equals(other as GetBlogByIdRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReadBlogRequest other) {
+    public bool Equals(GetBlogByIdRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -638,7 +638,7 @@ namespace Blog {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReadBlogRequest other) {
+    public void MergeFrom(GetBlogByIdRequest other) {
       if (other == null) {
         return;
       }
@@ -666,11 +666,11 @@ namespace Blog {
 
   }
 
-  public sealed partial class ReadBlogResponse : pb::IMessage<ReadBlogResponse> {
-    private static readonly pb::MessageParser<ReadBlogResponse> _parser = new pb::MessageParser<ReadBlogResponse>(() => new ReadBlogResponse());
+  public sealed partial class GetBlogByIdResponse : pb::IMessage<GetBlogByIdResponse> {
+    private static readonly pb::MessageParser<GetBlogByIdResponse> _parser = new pb::MessageParser<GetBlogByIdResponse>(() => new GetBlogByIdResponse());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReadBlogResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<GetBlogByIdResponse> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -683,21 +683,21 @@ namespace Blog {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadBlogResponse() {
+    public GetBlogByIdResponse() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadBlogResponse(ReadBlogResponse other) : this() {
+    public GetBlogByIdResponse(GetBlogByIdResponse other) : this() {
       blog_ = other.blog_ != null ? other.blog_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadBlogResponse Clone() {
-      return new ReadBlogResponse(this);
+    public GetBlogByIdResponse Clone() {
+      return new GetBlogByIdResponse(this);
     }
 
     /// <summary>Field number for the "blog" field.</summary>
@@ -713,11 +713,11 @@ namespace Blog {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReadBlogResponse);
+      return Equals(other as GetBlogByIdResponse);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReadBlogResponse other) {
+    public bool Equals(GetBlogByIdResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -767,7 +767,7 @@ namespace Blog {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReadBlogResponse other) {
+    public void MergeFrom(GetBlogByIdResponse other) {
       if (other == null) {
         return;
       }

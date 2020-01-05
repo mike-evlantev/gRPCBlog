@@ -38,7 +38,7 @@ namespace server.Services
             });
         }
 
-        public override Task<ReadBlogResponse> ReadBlog(ReadBlogRequest request, ServerCallContext context)
+        public override Task<GetBlogByIdResponse> GetBlogById(GetBlogByIdRequest request, ServerCallContext context)
         {
             var id = request.Id;
             var filter = new FilterDefinitionBuilder<BsonDocument>().Eq("_id", new ObjectId(id));
@@ -53,7 +53,7 @@ namespace server.Services
                 Content = result.GetValue("content").AsString
             };
 
-            return Task.FromResult(new ReadBlogResponse() { Blog = blog });
+            return Task.FromResult(new GetBlogByIdResponse() { Blog = blog });
         }
     }
 }

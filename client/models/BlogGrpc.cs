@@ -14,8 +14,8 @@ namespace Blog {
 
     static readonly grpc::Marshaller<global::Blog.CreateBlogRequest> __Marshaller_blog_CreateBlogRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Blog.CreateBlogRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Blog.CreateBlogResponse> __Marshaller_blog_CreateBlogResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Blog.CreateBlogResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Blog.ReadBlogRequest> __Marshaller_blog_ReadBlogRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Blog.ReadBlogRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Blog.ReadBlogResponse> __Marshaller_blog_ReadBlogResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Blog.ReadBlogResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Blog.GetBlogByIdRequest> __Marshaller_blog_GetBlogByIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Blog.GetBlogByIdRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Blog.GetBlogByIdResponse> __Marshaller_blog_GetBlogByIdResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Blog.GetBlogByIdResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Blog.CreateBlogRequest, global::Blog.CreateBlogResponse> __Method_CreateBlog = new grpc::Method<global::Blog.CreateBlogRequest, global::Blog.CreateBlogResponse>(
         grpc::MethodType.Unary,
@@ -24,12 +24,12 @@ namespace Blog {
         __Marshaller_blog_CreateBlogRequest,
         __Marshaller_blog_CreateBlogResponse);
 
-    static readonly grpc::Method<global::Blog.ReadBlogRequest, global::Blog.ReadBlogResponse> __Method_ReadBlog = new grpc::Method<global::Blog.ReadBlogRequest, global::Blog.ReadBlogResponse>(
+    static readonly grpc::Method<global::Blog.GetBlogByIdRequest, global::Blog.GetBlogByIdResponse> __Method_GetBlogById = new grpc::Method<global::Blog.GetBlogByIdRequest, global::Blog.GetBlogByIdResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "ReadBlog",
-        __Marshaller_blog_ReadBlogRequest,
-        __Marshaller_blog_ReadBlogResponse);
+        "GetBlogById",
+        __Marshaller_blog_GetBlogByIdRequest,
+        __Marshaller_blog_GetBlogByIdResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -52,7 +52,7 @@ namespace Blog {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Blog.ReadBlogResponse> ReadBlog(global::Blog.ReadBlogRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Blog.GetBlogByIdResponse> GetBlogById(global::Blog.GetBlogByIdRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -126,21 +126,21 @@ namespace Blog {
       {
         return CallInvoker.AsyncUnaryCall(__Method_CreateBlog, null, options, request);
       }
-      public virtual global::Blog.ReadBlogResponse ReadBlog(global::Blog.ReadBlogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Blog.GetBlogByIdResponse GetBlogById(global::Blog.GetBlogByIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ReadBlog(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GetBlogById(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Blog.ReadBlogResponse ReadBlog(global::Blog.ReadBlogRequest request, grpc::CallOptions options)
+      public virtual global::Blog.GetBlogByIdResponse GetBlogById(global::Blog.GetBlogByIdRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_ReadBlog, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_GetBlogById, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Blog.ReadBlogResponse> ReadBlogAsync(global::Blog.ReadBlogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Blog.GetBlogByIdResponse> GetBlogByIdAsync(global::Blog.GetBlogByIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ReadBlogAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GetBlogByIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Blog.ReadBlogResponse> ReadBlogAsync(global::Blog.ReadBlogRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Blog.GetBlogByIdResponse> GetBlogByIdAsync(global::Blog.GetBlogByIdRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_ReadBlog, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_GetBlogById, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override BlogServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -155,7 +155,7 @@ namespace Blog {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_CreateBlog, serviceImpl.CreateBlog)
-          .AddMethod(__Method_ReadBlog, serviceImpl.ReadBlog).Build();
+          .AddMethod(__Method_GetBlogById, serviceImpl.GetBlogById).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -165,7 +165,7 @@ namespace Blog {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, BlogServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_CreateBlog, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Blog.CreateBlogRequest, global::Blog.CreateBlogResponse>(serviceImpl.CreateBlog));
-      serviceBinder.AddMethod(__Method_ReadBlog, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Blog.ReadBlogRequest, global::Blog.ReadBlogResponse>(serviceImpl.ReadBlog));
+      serviceBinder.AddMethod(__Method_GetBlogById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Blog.GetBlogByIdRequest, global::Blog.GetBlogByIdResponse>(serviceImpl.GetBlogById));
     }
 
   }
