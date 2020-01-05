@@ -1,6 +1,8 @@
 ﻿using Blog;
 using Grpc.Core;
 using MongoDB.Bson;
+using MongoDB.Bson.IO;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -46,14 +48,30 @@ namespace server.Services
             if (result == null)
                 throw new RpcException(new Status(StatusCode.NotFound, $"Blog {id} not found"));
 
-            Blog.Blog blog = new Blog.Blog()
-            {
-                AuthorId = result.GetValue("authorId").AsString,
-                Title = result.GetValue("title").AsString,
-                Content = result.GetValue("content").AsString
-            };
+            result.Remove("_id");
+            var blog = BsonSerializer.Deserialize<Blog.Blog>(result);
 
             return Task.FromResult(new GetBlogByIdResponse() { Blog = blog });
+        }
+
+        public override Task<UpdateBlogByIdResponse> UpdateBlogById(UpdateBlogByIdRequest request, ServerCallContext context)
+        {
+            var id = request.Blog.Id;
+            var filter = new FilterDefinitionBuilder<BsonDocument>().Eq("_id", new ObjectId(id));
+            var result = _blogs.Find(filter).FirstOrDefault();
+            if (result == null)
+                throw new RpcException(new Status(StatusCode.NotFound, $"Blog {id} not found"));
+
+            var doc = new BsonDocument();
+            using (var writer = new BsonDocumentWriter(doc))
+                BsonSerializer.Serialize(writer, request.Blog);
+
+            doc.Remove("_id");
+            _blogs.ReplaceOne(filter, doc);
+
+            var blog = BsonSerializer.Deserialize<Blog.Blog>(doc);
+            return Task.FromResult(new UpdateBlogByIdResponse() { Blog = blog });
+
         }
     }
 }
