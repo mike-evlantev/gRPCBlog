@@ -1,4 +1,5 @@
 ﻿using Blog;
+using client.Repositories;
 using Grpc.Core;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace client
     class Program
     {
         const string target = "127.0.0.1:50051";
+
+        private static BlogRepository _blogRepository = new BlogRepository();
+
         static async Task Main(string[] args)
         {
             Channel channel = new Channel(target, ChannelCredentials.Insecure);
@@ -21,16 +25,7 @@ namespace client
 
             });
 
-            var client = new BlogService.BlogServiceClient(channel);
-            var response = client.CreateBlog(new CreateBlogRequest()
-            {
-                Blog = new Blog.Blog()
-                { 
-                    AuthorId = "Mike",
-                    Title = "First Blog Post!",
-                    Content = "Hello world!"
-                }
-            });
+            var response = _blogRepository.CreateBlog(new BlogService.BlogServiceClient(channel));
 
             Console.WriteLine($"Blog {response.Blog.Id} created!");
 
