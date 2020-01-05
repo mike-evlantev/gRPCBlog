@@ -41,7 +41,6 @@ message DeleteBlogByIdResponse {
 	string id = 1;
 }
 
-
 service BlogService {
 	// Unary 
 	rpc CreateBlog (CreateBlogRequest) returns (CreateBlogResponse) {};
