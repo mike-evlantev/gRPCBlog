@@ -12,6 +12,15 @@ namespace Blog {
   {
     static readonly string __ServiceName = "blog.BlogService";
 
+    static readonly grpc::Marshaller<global::Blog.CreateBlogRequest> __Marshaller_blog_CreateBlogRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Blog.CreateBlogRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Blog.CreateBlogResponse> __Marshaller_blog_CreateBlogResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Blog.CreateBlogResponse.Parser.ParseFrom);
+
+    static readonly grpc::Method<global::Blog.CreateBlogRequest, global::Blog.CreateBlogResponse> __Method_CreateBlog = new grpc::Method<global::Blog.CreateBlogRequest, global::Blog.CreateBlogResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateBlog",
+        __Marshaller_blog_CreateBlogRequest,
+        __Marshaller_blog_CreateBlogResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -23,6 +32,11 @@ namespace Blog {
     [grpc::BindServiceMethod(typeof(BlogService), "BindService")]
     public abstract partial class BlogServiceBase
     {
+      public virtual global::System.Threading.Tasks.Task<global::Blog.CreateBlogResponse> CreateBlog(global::Blog.CreateBlogRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Client for BlogService</summary>
@@ -48,6 +62,22 @@ namespace Blog {
       {
       }
 
+      public virtual global::Blog.CreateBlogResponse CreateBlog(global::Blog.CreateBlogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateBlog(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Blog.CreateBlogResponse CreateBlog(global::Blog.CreateBlogRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CreateBlog, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Blog.CreateBlogResponse> CreateBlogAsync(global::Blog.CreateBlogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateBlogAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Blog.CreateBlogResponse> CreateBlogAsync(global::Blog.CreateBlogRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CreateBlog, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override BlogServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -59,7 +89,8 @@ namespace Blog {
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     public static grpc::ServerServiceDefinition BindService(BlogServiceBase serviceImpl)
     {
-      return grpc::ServerServiceDefinition.CreateBuilder().Build();
+      return grpc::ServerServiceDefinition.CreateBuilder()
+          .AddMethod(__Method_CreateBlog, serviceImpl.CreateBlog).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -68,6 +99,7 @@ namespace Blog {
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     public static void BindService(grpc::ServiceBinderBase serviceBinder, BlogServiceBase serviceImpl)
     {
+      serviceBinder.AddMethod(__Method_CreateBlog, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Blog.CreateBlogRequest, global::Blog.CreateBlogResponse>(serviceImpl.CreateBlog));
     }
 
   }

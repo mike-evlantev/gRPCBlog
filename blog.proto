@@ -9,6 +9,14 @@ message Blog {
 	string content = 4;
 }
 
+message CreateBlogRequest {
+	Blog blog = 1; // will not contain an Id
+}
+
+message CreateBlogResponse {
+	Blog blog = 1; // will containt an Id
+}
+
 service BlogService {
-	
+	rpc CreateBlog (CreateBlogRequest) returns (CreateBlogResponse) {};
 }
