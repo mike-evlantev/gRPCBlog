@@ -25,8 +25,18 @@ message GetBlogByIdResponse {
 	Blog blog = 1;
 }
 
+message UpdateBlogByIdRequest {
+	Blog blog = 1;
+}
+
+message UpdateBlogByIdResponse {
+	Blog blog = 1;
+}
+
+
 service BlogService {
 	// Unary 
 	rpc CreateBlog (CreateBlogRequest) returns (CreateBlogResponse) {};
 	rpc GetBlogById (GetBlogByIdRequest) returns (GetBlogByIdResponse) {};
+	rpc UpdateBlogById (UpdateBlogByIdRequest) returns (UpdateBlogByIdResponse) {};
 }
