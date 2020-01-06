@@ -59,7 +59,6 @@ namespace server
 
         static void RegisterClassMaps()
         {
-            BsonSerializer.RegisterIdGenerator(typeof(string), StringObjectIdGenerator.Instance);
             if (!BsonClassMap.IsClassMapRegistered(typeof(Blog.Blog)))
             {
                 BsonClassMap.RegisterClassMap<Blog.Blog>(cm =>
