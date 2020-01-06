@@ -17,6 +17,14 @@ message CreateBlogResponse {
 	Blog blog = 1; // will containt an Id
 }
 
+message GetAllBlogsRequest {
+
+}
+
+message GetAllBlogsResponse {
+	Blog blog = 1;
+}
+
 message GetBlogByIdRequest {
 	string id = 1;
 }
@@ -47,4 +55,7 @@ service BlogService {
 	rpc GetBlogById (GetBlogByIdRequest) returns (GetBlogByIdResponse) {};
 	rpc UpdateBlogById (UpdateBlogByIdRequest) returns (UpdateBlogByIdResponse) {};
 	rpc DeleteBlogById (DeleteBlogByIdRequest) returns (DeleteBlogByIdResponse) {};
+
+	// Server Stream
+	rpc GetAllBlogs (GetAllBlogsRequest) returns (stream GetAllBlogsResponse) {};
 }
