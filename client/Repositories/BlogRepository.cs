@@ -23,6 +23,11 @@ namespace client.Repositories
             });
         }
 
+        public AsyncServerStreamingCall<GetAllBlogsResponse> GetAllBlogs(GetAllBlogsRequest request)
+        {
+            return _client.GetAllBlogs(request);
+        }
+
         public GetBlogByIdResponse GetBlogById(string id)
         {
             try

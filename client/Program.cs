@@ -33,6 +33,13 @@ namespace client
             var createResponse = blogRepository.CreateBlog(newBlog);
             Console.WriteLine($"Blog {createResponse.Blog.Id} created!");
 
+            // Get All Blogs
+            var getAllResponse = blogRepository.GetAllBlogs(new GetAllBlogsRequest());
+            while (await getAllResponse.ResponseStream.MoveNext())
+            {
+                Console.WriteLine(getAllResponse.ResponseStream.Current.Blog.ToString());
+            }
+
             // Get Blog By Id
             var getResponse = blogRepository.GetBlogById(createResponse.Blog.Id);
             Console.WriteLine(getResponse.Blog.ToString());
