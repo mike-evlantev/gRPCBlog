@@ -1,6 +1,8 @@
 ﻿using Blog;
 using dotenv.net;
 using Grpc.Core;
+using Grpc.Reflection;
+using Grpc.Reflection.V1Alpha;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
@@ -37,7 +39,10 @@ namespace server
             {
                 server = new Server()
                 {
-                    Services = { BlogService.BindService(new BlogServiceImpl(db)) },
+                    Services = { 
+                        BlogService.BindService(new BlogServiceImpl(db)),
+                        ServerReflection.BindService(new ReflectionServiceImpl(BlogService.Descriptor, ServerReflection.Descriptor)) // Grpc.Reflection
+                    },
                     Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
                 };
 
