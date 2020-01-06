@@ -41,6 +41,23 @@ namespace server.Services
             });
         }
 
+        public override async Task GetAllBlogs(GetAllBlogsRequest request, IServerStreamWriter<GetAllBlogsResponse> responseStream, ServerCallContext context)
+        {
+            var filter = new FilterDefinitionBuilder<BsonDocument>().Empty;
+            var result = _blogs.Find(filter);
+            foreach (var doc in result.ToList())
+            {
+                await responseStream.WriteAsync(new GetAllBlogsResponse()
+                {
+                    //Blog = new Blog.Blog()
+                    //{
+                    //    Id = 
+                    //}
+                    Blog = BsonSerializer.Deserialize<Blog.Blog>(doc)
+                });
+            }
+        }
+
         public override Task<GetBlogByIdResponse> GetBlogById(GetBlogByIdRequest request, ServerCallContext context)
         {
             var id = request.Id;
