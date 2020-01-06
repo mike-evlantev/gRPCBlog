@@ -59,16 +59,21 @@ namespace server
 
         static void RegisterClassMaps()
         {
-            BsonClassMap.RegisterClassMap<Blog.Blog>(cm =>
+            BsonSerializer.RegisterIdGenerator(typeof(string), StringObjectIdGenerator.Instance);
+            if (!BsonClassMap.IsClassMapRegistered(typeof(Blog.Blog)))
             {
-                cm.AutoMap();
-                cm.SetIgnoreExtraElements(true);
-                cm.MapProperty(x => x.Id).SetElementName("_id");
-                cm.MapProperty(x => x.AuthorId).SetElementName("authorId");
-                cm.MapProperty(x => x.Title).SetElementName("title");
-                cm.MapProperty(x => x.Content).SetElementName("content");
-                cm.GetMemberMap(x => x.Id).SetSerializer(new StringSerializer(BsonType.ObjectId));
-            });
+                BsonClassMap.RegisterClassMap<Blog.Blog>(cm =>
+                {
+                    cm.AutoMap();
+                    cm.SetIgnoreExtraElements(true);
+                    cm.MapIdMember(c => c.Id).SetIdGenerator(StringObjectIdGenerator.Instance);
+                    cm.MapProperty(x => x.Id).SetElementName("_id");
+                    cm.MapProperty(x => x.AuthorId).SetElementName("authorId");
+                    cm.MapProperty(x => x.Title).SetElementName("title");
+                    cm.MapProperty(x => x.Content).SetElementName("content");
+                    cm.GetMemberMap(x => x.Id).SetSerializer(new StringSerializer(BsonType.ObjectId));
+                });
+            }
         }
     }
 }
